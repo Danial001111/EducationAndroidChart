@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Основные строковые ресурсы вашего приложения -->
+    <string name="app_name">Education Android Chart</string>
+
+    <!-- Добавленные строки для AddExpenseDialog -->
+    <!-- Добавленные строки для ChartFragment1 и ChartFragment2 -->
+    <string name="added">Расход успешно добавлен.</string>
+    <string name="confirm_delete" translatable="false">Confirm Delete</string>
+    <string name="delete_category" translatable="false">Delete Category</string>
+    <string name="category_deleted" translatable="false">Category Deleted</string>
+
+    <string name="fill_in_all_fields">Please fill in all fields</string>
+    <!-- Примеры других строковых ресурсов -->
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Пароль</string>
+    <string name="register">Зарегистрироваться</string>
+    <string name="login">Войти</string>
+    <string name="category">Категория</string>
+    <string name="amount">Сумма</string>
+    <string name="comment">Комментарий</string>
+    <!-- Для кнопок в диалоге добавления расходов -->
+    <string name="add">Добавить</string>
+    <string name="cancel">Отмена</string>
+
+    <!-- Пример строкового ресурса для целей -->
+    <string name="goal1">Goal 1: Save for a new car</string>
+
+    <string name="goal2">Цель 2: Накопить на отпуск</string>
+    <string name="goal3">Цель 3: Накопить на непредвиденные расходы</string>
+</resources>

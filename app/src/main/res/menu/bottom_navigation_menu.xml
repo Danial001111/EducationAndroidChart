@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_chart1"
+        android:title="Chart 1" />
+    <item
+        android:id="@+id/navigation_chart2"
+        android:title="Chart 2" />
+    <item
+        android:id="@+id/navigation_settings"
+        android:title="Settings" />
+    <item
+        android:id="@+id/navigation_goals"
+        android:title="Goals" />
+</menu>

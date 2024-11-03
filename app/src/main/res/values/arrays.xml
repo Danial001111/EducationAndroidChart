@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Массив языков -->
+    <string-array name="languages_array">
+        <item>Английский</item>
+        <item>Русский</item>
+        <item>Украинский</item>
+        <!-- Добавьте другие языки по необходимости -->
+    </string-array>
+
+    <!-- Массив валют -->
+    <string-array name="currencies_array">
+        <item>USD</item>
+        <item>EUR</item>
+        <item>UAH</item>
+        <!-- Добавьте другие валюты по необходимости -->
+    </string-array>
+</resources>

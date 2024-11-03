@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Main string resources for your application -->
+    <string name="app_name">Education Android Chart</string>
+
+    <!-- Added strings for AddExpenseDialog -->
+    <string name="fill_in_all_fields">Please fill in all fields.</string>
+
+    <!-- Added strings for ChartFragment1 and ChartFragment2 -->
+    <string name="added">Expense successfully added.</string>
+
+    <!-- Examples of other string resources -->
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="register">Register</string>
+    <string name="login">Log in</string>
+    <string name="category">Категория</string>
+    <string name="amount">Сумма</string>
+    <string name="comment">Комментарий</string>
+    <!-- For buttons in the add expense dialog -->
+    <string name="add">Add</string>
+    <string name="cancel">Cancel</string>
+
+    <!-- Example goal string resources -->
+    <string name="goal1">Цель 1: Накопить на новую машину</string>
+    <string name="goal2">Goal 2: Save for a vacation</string>
+    <string name="goal3">Goal 3: Save for unexpected expenses</string>
+</resources>

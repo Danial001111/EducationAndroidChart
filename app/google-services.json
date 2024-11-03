@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "539142023953",
+    "project_id": "chatt007",
+    "storage_bucket": "chatt007.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:539142023953:android:6b21c1e46322e4328cbab0",
+        "android_client_info": {
+          "package_name": "com.example.chatt007"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJBXlqqgCEVBpH44lU_VtnUorZZqOFecI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:539142023953:android:9a1860dd1d9729c78cbab0",
+        "android_client_info": {
+          "package_name": "serhii.bulakh.educationandroidchart"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJBXlqqgCEVBpH44lU_VtnUorZZqOFecI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
