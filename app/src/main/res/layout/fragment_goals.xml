@@ -5,23 +5,29 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/goal_name_input"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/goal1"
-        android:textSize="18sp" />
+        android:hint="@string/Goal_name" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/goal_amount_input"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/goal2"
-        android:textSize="18sp"
-        android:layout_marginTop="8dp" />
+        android:hint="@string/Goal_am"
+        android:inputType="number" />
 
-    <TextView
+    <Button
+        android:id="@+id/add_goal_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/goal3"
-        android:textSize="18sp"
-        android:layout_marginTop="8dp" />
+        android:text="@string/Add_goal" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/goals_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp" />
+
 </LinearLayout>

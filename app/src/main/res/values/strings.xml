@@ -1,31 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Основные строковые ресурсы вашего приложения -->
+    <!-- Основные строковые ресурсы приложения -->
     <string name="app_name">Education Android Chart</string>
 
     <!-- Добавленные строки для AddExpenseDialog -->
+    <string name="fill_in_all_fields">Пожалуйста, заполните все поля.</string>
+
     <!-- Добавленные строки для ChartFragment1 и ChartFragment2 -->
     <string name="added">Расход успешно добавлен.</string>
-    <string name="confirm_delete" translatable="false">Confirm Delete</string>
-    <string name="delete_category" translatable="false">Delete Category</string>
-    <string name="category_deleted" translatable="false">Category Deleted</string>
-
-    <string name="fill_in_all_fields">Please fill in all fields</string>
+    <string name="confirm_delete">Подтвердите удаление</string>
+    <string name="delete_category">Удалить категорию</string>
+    <string name="category_deleted">Категория удалена</string>
+    <string name="delete">Удалить</string>
     <!-- Примеры других строковых ресурсов -->
-    <string name="email_hint">Email</string>
+    <string name="email_hint">Электронная почта</string>
     <string name="password_hint">Пароль</string>
     <string name="register">Зарегистрироваться</string>
     <string name="login">Войти</string>
     <string name="category">Категория</string>
     <string name="amount">Сумма</string>
     <string name="comment">Комментарий</string>
+    <string name="Add_Goal">Добавить к цели</string>
     <!-- Для кнопок в диалоге добавления расходов -->
     <string name="add">Добавить</string>
     <string name="cancel">Отмена</string>
-
+    <string name="add_cat">Добавить категорию</string>
+    <string name="log_ac">Выйти из аккаунта</string>
+    <string name="Add_goal">Добавить цели</string>
+    <string name="Goal_am">Сумма цели </string>
+    <string name="Goal_name">Название цели </string>
     <!-- Пример строкового ресурса для целей -->
-    <string name="goal1">Goal 1: Save for a new car</string>
-
+    <string name="goal1">Цель 1: Накопить на новую машину</string>
     <string name="goal2">Цель 2: Накопить на отпуск</string>
     <string name="goal3">Цель 3: Накопить на непредвиденные расходы</string>
 </resources>

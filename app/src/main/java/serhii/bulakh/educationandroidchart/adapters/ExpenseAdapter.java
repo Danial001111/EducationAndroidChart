@@ -24,6 +24,7 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
         this.expenseList = new ArrayList<>(expenseList);
         this.listener = listener;
     }
+
     public void updateList(List<ExpenseDetail> newList) {
         expenseList.clear();
         expenseList.addAll(newList);
@@ -78,5 +79,3 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
         void onExpenseDelete(int position);
     }
 }
-
-

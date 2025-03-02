@@ -8,24 +8,24 @@
         android:id="@+id/categoryInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Категория" />
+        android:hint="@string/category" />
 
     <EditText
         android:id="@+id/amountInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
-        android:hint="Сумма" />
+        android:hint="@string/amount" />
 
     <EditText
         android:id="@+id/commentInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Комментарий" />
+        android:hint="@string/comment" />
 
     <Button
         android:id="@+id/addButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Добавить" />
+        android:text="@string/add" />
 </LinearLayout>

@@ -11,26 +11,36 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.material.snackbar.Snackbar;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+
 import serhii.bulakh.educationandroidchart.AddExpenseDialog;
 import serhii.bulakh.educationandroidchart.R;
+import serhii.bulakh.educationandroidchart.adapters.ExpenseAdapter;
+import serhii.bulakh.educationandroidchart.models.ExpenseDetail;
 
 public class ChartFragment2 extends Fragment implements AddExpenseDialog.OnExpenseAddedListener {
 
     private PieChart pieChart;
-    private ArrayList<PieEntry> entries = new ArrayList<>();
-    private Map<String, String> commentsMap = new HashMap<>(); // Для хранения комментариев
+    private ArrayList<ExpenseDetail> expenses = new ArrayList<>();
+    private ExpenseAdapter expenseAdapter;
     private static final String PREFS_NAME = "ChartPrefs";
     private static final String CHART_DATA_KEY = "ChartData2";
 
@@ -39,9 +49,36 @@ public class ChartFragment2 extends Fragment implements AddExpenseDialog.OnExpen
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_chart2, container, false);
-        pieChart = view.findViewById(R.id.pieChart);
 
+        pieChart = view.findViewById(R.id.pieChart);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         Button buttonAddExpense = view.findViewById(R.id.buttonAddExpense);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+
+        expenseAdapter = new ExpenseAdapter(expenses, new ExpenseAdapter.OnExpenseClickListener() {
+            @Override
+            public void onExpenseEdit(int position, String category, float amount, String comment) {
+                ExpenseDetail expense = expenses.get(position);
+                expense.setCategory(category);
+                expense.setAmount(amount);
+                expense.setComment(comment);
+                saveChartData();
+                updateChart();
+                expenseAdapter.notifyItemChanged(position);
+            }
+
+            @Override
+            public void onExpenseDelete(int position) {
+                expenses.remove(position);
+                saveChartData();
+                updateChart();
+                expenseAdapter.notifyItemRemoved(position);
+            }
+        });
+
+        recyclerView.setAdapter(expenseAdapter);
+
         buttonAddExpense.setOnClickListener(v -> {
             AddExpenseDialog dialog = new AddExpenseDialog(requireContext(), this);
             dialog.show();
@@ -49,25 +86,50 @@ public class ChartFragment2 extends Fragment implements AddExpenseDialog.OnExpen
 
         loadChartData();
         updateChart();
+        setupPieChartListener();
         return view;
+    }
+
+    private void setupPieChartListener() {
+        pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+            @Override
+            public void onValueSelected(Entry e, Highlight h) {
+                String selectedCategory = ((PieEntry) e).getLabel();
+                showExpensesForCategory(selectedCategory);
+            }
+
+            @Override
+            public void onNothingSelected() {
+                expenseAdapter.updateList(expenses); // Отображение всех расходов, если ничего не выбрано
+            }
+        });
+    }
+
+    private void showExpensesForCategory(String category) {
+        ArrayList<ExpenseDetail> filteredExpenses = new ArrayList<>();
+        for (ExpenseDetail expense : expenses) {
+            if (expense.getCategory().equals(category)) {
+                filteredExpenses.add(expense);
+            }
+        }
+        expenseAdapter.updateList(filteredExpenses);
     }
 
     private void loadChartData() {
         SharedPreferences sharedPreferences = requireContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         Set<String> savedEntries = sharedPreferences.getStringSet(CHART_DATA_KEY, new HashSet<>());
 
-        entries.clear();
-        commentsMap.clear();
+        expenses.clear();
         for (String entry : savedEntries) {
             String[] parts = entry.split(",");
             if (parts.length == 3) {
                 float value = Float.parseFloat(parts[0]);
                 String label = parts[1];
                 String comment = parts[2];
-                entries.add(new PieEntry(value, label));
-                commentsMap.put(label, comment);
+                expenses.add(new ExpenseDetail(label, value, comment));
             }
         }
+        expenseAdapter.notifyDataSetChanged();
     }
 
     private void saveChartData() {
@@ -75,9 +137,8 @@ public class ChartFragment2 extends Fragment implements AddExpenseDialog.OnExpen
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         Set<String> savedEntries = new HashSet<>();
-        for (PieEntry entry : entries) {
-            String comment = commentsMap.get(entry.getLabel());
-            savedEntries.add(entry.getValue() + "," + entry.getLabel() + "," + comment);
+        for (ExpenseDetail expense : expenses) {
+            savedEntries.add(expense.getAmount() + "," + expense.getCategory() + "," + expense.getComment());
         }
 
         editor.putStringSet(CHART_DATA_KEY, savedEntries);
@@ -85,6 +146,18 @@ public class ChartFragment2 extends Fragment implements AddExpenseDialog.OnExpen
     }
 
     private void updateChart() {
+        Map<String, Float> categorySums = new HashMap<>();
+        for (ExpenseDetail expense : expenses) {
+            String category = expense.getCategory();
+            float amount = expense.getAmount();
+            categorySums.put(category, categorySums.getOrDefault(category, 0f) + amount);
+        }
+
+        ArrayList<PieEntry> entries = new ArrayList<>();
+        for (Map.Entry<String, Float> entry : categorySums.entrySet()) {
+            entries.add(new PieEntry(entry.getValue(), entry.getKey()));
+        }
+
         PieDataSet dataSet = new PieDataSet(entries, "");
         dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
         PieData pieData = new PieData(dataSet);
@@ -94,23 +167,16 @@ public class ChartFragment2 extends Fragment implements AddExpenseDialog.OnExpen
 
     @Override
     public void onExpenseAdded(String category, float amount) {
-
+        // Передаем пустую строку, если комментарий отсутствует
+        onExpenseAdded(category, amount, "");
     }
+
+    @Override
     public void onExpenseAdded(String category, float amount, String comment) {
-        boolean categoryExists = false;
-        for (PieEntry entry : entries) {
-            if (entry.getLabel().equals(category)) {
-                entry.setY(entry.getValue() + amount); // Суммируем
-                categoryExists = true;
-                break;
-            }
-        }
-        if (!categoryExists) {
-            entries.add(new PieEntry(amount, category));
-        }
-        commentsMap.put(category, comment); // Добавляем или обновляем комментарий
+        expenses.add(new ExpenseDetail(category, amount, comment));
         saveChartData();
         updateChart();
+        expenseAdapter.notifyDataSetChanged();
 
         Snackbar.make(getView(), getString(R.string.added) + ": " + category + " - " + formatPrice(amount), Snackbar.LENGTH_SHORT).show();
     }

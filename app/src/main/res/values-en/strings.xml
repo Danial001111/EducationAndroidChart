@@ -8,21 +8,30 @@
 
     <!-- Added strings for ChartFragment1 and ChartFragment2 -->
     <string name="added">Expense successfully added.</string>
-
+    <string name="confirm_delete">Confirm Delete</string>
+    <string name="delete_category">Delete Category</string>
+    <string name="category_deleted">Category Deleted</string>
+    <string name="delete">Delete</string>
     <!-- Examples of other string resources -->
     <string name="email_hint">Email</string>
     <string name="password_hint">Password</string>
     <string name="register">Register</string>
     <string name="login">Log in</string>
-    <string name="category">Категория</string>
-    <string name="amount">Сумма</string>
-    <string name="comment">Комментарий</string>
+    <string name="category">Category</string>
+    <string name="amount">Amount</string>
+    <string name="comment">Comment</string>
+    <string name="Add_goal">Add Goal</string>
     <!-- For buttons in the add expense dialog -->
     <string name="add">Add</string>
     <string name="cancel">Cancel</string>
+    <string name="add_cat">Add a category</string>
+    <string name="log_ac">Log out of your account</string>
+    <string name="Add_Goal">Add to Goal</string>
+    <string name="Goal_am">Goal amount </string>
+    <string name="Goal_name">Goal name </string>
 
     <!-- Example goal string resources -->
-    <string name="goal1">Цель 1: Накопить на новую машину</string>
+    <string name="goal1">Goal 1: Save for a new car</string>
     <string name="goal2">Goal 2: Save for a vacation</string>
     <string name="goal3">Goal 3: Save for unexpected expenses</string>
 </resources>
